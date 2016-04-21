@@ -1,14 +1,35 @@
-<div class="container-fluid" ng-app="app">
-  <div class="panel panel-success">
-    <div class="panel-heading">
-      <h1 ng-if="name">Hello, {{name}}</h1>
+<div class="container" ng-app="app" ng-controller="HomeController as vm">
+  <form id="search">
+    <div class="form-group">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>Have a question?</h3>
+        <search-box></search-box>
+      </div>
     </div>
-    <div class="panel-body">
-      <form class="form-inline">
-        <div class="form-group">
-          <input class="form-control" type="text" placeholder="Enter your name" autofocus ng-model="name">
-        </div>
-      </form>
-    </div>
+  </form>
+  <div class="col-md-8 col-md-offset-2 sb-animate" ng-show="vm.searches.length > 0">
+    <h3>
+      Analytics Searches
+      <span class="pull-right">
+        <button type="button"
+          class="btn btn-sm btn-danger"
+          ng-click="vm.reset()"><span><i class="fa fa-trash"></i> Clear stats</span></button>
+        <button type="button"
+          class="btn btn-sm btn-default"
+          ng-hide="!vm.running"
+          ng-click="vm.stopWatcher()"><span><i class="fa fa-stop"></i> Stop watcher</span></button>
+        <button type="button"
+          class="btn btn-sm btn-default"
+          ng-hide="vm.running"
+          ng-click="vm.startWatcher()"><span><i class="fa fa-play"></i> Start watcher</span></button>
+      </span>
+    </h3>
+    <p>These are all searched queries:</p>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="search in vm.searches">
+        <span class="badge">{{ search.count }} searches</span>
+        {{ search.text }}
+      </li>
+    </ul>
   </div>
 </div>
