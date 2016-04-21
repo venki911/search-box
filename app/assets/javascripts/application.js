@@ -14,6 +14,7 @@
 //= require bootstrap
 //= require angular
 //= require angular-bootstrap
+//= require angular-animate
 //= require angular-rails-templates
 //
 // Angular Project

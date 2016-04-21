@@ -10,8 +10,37 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_self
  *= require bootstrap
+ *= require animate-css
  *= require font-awesome
+ *= require_self
  *= require_tree .
  */
+body {
+  background: #f8f8f8 !important;
+}
+
+.fast {
+  -webkit-animation-duration: .25s;
+     -moz-animation-duration: .25s;
+      -ms-animation-duration: .25s;
+       -o-animation-duration: .25s;
+          animation-duration: .25s;
+}
+
+.sb-animate,
+.sb-animate.ng-move,
+.sb-animate.ng-enter,
+.sb-animate.ng-leave {
+  -webkit-transition: all .25s ease-in-out;
+     -moz-transition: all .25s ease-in-out;
+      -ms-transition: all .25s ease-in-out;
+       -o-transition: all .25s ease-in-out;
+          transition: all .25s ease-in-out;
+}
+.sb-animate {
+  opacity: 1;
+}
+.sb-animate.ng-hide {
+  opacity: 0;
+}
