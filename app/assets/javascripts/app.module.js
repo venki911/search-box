@@ -3,6 +3,7 @@
 
   angular
     .module('app', [
-        'search-box'
+        'search-box',
+        'templates',
     ]);
 })();
