@@ -4,6 +4,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
   gem 'rails-assets-angular'
   gem 'rails-assets-angular-bootstrap'
+  gem 'rails-assets-angular-animate'
+  gem 'rails-assets-animate-css'
 end
 
 gem 'angular-rails-templates'
