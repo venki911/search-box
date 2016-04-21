@@ -15,5 +15,9 @@
 //= require angular
 //= require angular-bootstrap
 //= require angular-rails-templates
+//
+// Angular Project
+//
 //= require app.module
+//= require search-box/search-box
 //= require_tree .
