@@ -1,16 +1,21 @@
-<div>
+<form name="searchbox">
   <div class="input-group">
     <input type="text" class="form-control" autofocus
       placeholder="Search anything"
-      ng-model="ngModel"
+      ng-model="vm.query"
       ng-model-options="{ debounce: 300 }">
     <span class="input-group-btn">
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" ng-click="vm.search(vm.query)" class="btn btn-primary">
         <i class="fa fa-search"></i>
       </button>
     </span>
   </div><!-- /input-group -->
-  <ul>
-    <li ng-repeat="query in queries"></li>
-  </ul>
-</div>
+  <div id="search-box-suggestions" class="sb-animate" ng-show="vm.queries.length > 0">
+    <p>Suggestions:</p>
+    <div class="list-group">
+      <a class="list-group-item" ng-repeat="query in vm.queries" ng-click="vm.selectQuery(query)">
+        {{ query.text }}
+      </a>
+    </div>
+  </div>
+</form>
