@@ -4,8 +4,10 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
   gem 'rails-assets-angular'
   gem 'rails-assets-angular-bootstrap'
-  gem 'rails-assets-components-font-awesome'
 end
+
+gem 'angular-rails-templates'
+gem "font-awesome-rails"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
