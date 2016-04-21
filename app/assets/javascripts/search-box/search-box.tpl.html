@@ -1,0 +1,16 @@
+<div>
+  <div class="input-group">
+    <input type="text" class="form-control" autofocus
+      placeholder="Search anything"
+      ng-model="ngModel"
+      ng-model-options="{ debounce: 300 }">
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-search"></i>
+      </button>
+    </span>
+  </div><!-- /input-group -->
+  <ul>
+    <li ng-repeat="query in queries"></li>
+  </ul>
+</div>
