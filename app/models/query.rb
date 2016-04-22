@@ -1,7 +1,4 @@
-#
 # Query model for queries from users
-#
-# @author Marco Ávila <marcotulio.avila@gmail.com>
 class Query < ActiveRecord::Base
   before_save :increment_counter, :downcase_text
 
@@ -9,10 +6,7 @@ class Query < ActiveRecord::Base
   scope :suggest_most_frequent, ->(text) { where('text like ?', "%#{text}%").most_frequent }
 
   private
-    #
     # Increments the query's counter on every save
-    #
-    # @author Marco Ávila <marcotulio.avila@gmail.com>
     def increment_counter
       unless self.count.nil?
         self.count += 1
@@ -21,10 +15,7 @@ class Query < ActiveRecord::Base
       end
     end
 
-    #
     # Make queries text downcase for better analysis
-    #
-    # @author Marco Ávila <marcotulio.avila@gmail.com>
     def downcase_text
       self.text.downcase!
     end
