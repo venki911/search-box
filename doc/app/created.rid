@@ -1,0 +1,8 @@
+Thu, 21 Apr 2016 23:13:57 -0300
+README.rdoc	Tue, 19 Apr 2016 23:37:54 -0300
+app/controllers/application_controller.rb	Tue, 19 Apr 2016 23:37:54 -0300
+app/controllers/home_controller.rb	Thu, 21 Apr 2016 22:38:11 -0300
+app/controllers/query_controller.rb	Thu, 21 Apr 2016 23:12:43 -0300
+app/helpers/application_helper.rb	Tue, 19 Apr 2016 23:37:54 -0300
+app/helpers/home_helper.rb	Wed, 20 Apr 2016 19:37:29 -0300
+app/models/query.rb	Thu, 21 Apr 2016 22:38:06 -0300
