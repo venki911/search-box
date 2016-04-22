@@ -20,8 +20,8 @@ class QueryController < ApplicationController
     render json: Query.all.most_frequent
   end
 
-  # Destroy all queries. Used only for reset button.
+  # Resets the count attribute of all queries
   def reset_queries
-    render json: Query.destroy_all
+    render json: Query.update_all(count: 0)
   end
 end
