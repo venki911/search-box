@@ -51,6 +51,18 @@
   </div>
 
   
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Search+Box">Search Box</a>
+    <li><a href="#label-Requirements">Requirements</a>
+    <li><a href="#label-Installation">Installation</a>
+    <li><a href="#label-Documentation">Documentation</a>
+    <li><a href="#label-MIT+License">MIT License</a>
+  </ul>
+</div>
+
 
   <div id="project-metadata">
     <div id="fileindex-section" class="nav-section">
@@ -68,34 +80,69 @@
 
 <main role="main" aria-label="Page README.rdoc">
 
-<h2 id="label-README"><a href="README_rdoc.html">README</a><span><a href="#label-README">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2 id="label-Search+Box">Search Box<span><a href="#label-Search+Box">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<p>This <a href="README_rdoc.html">README</a> would normally document whatever
-steps are necessary to get the application up and running.</p>
+<p>This project is part of a test for helpjuice. This project can be found in
+a heroku app called [Search Box](<a
+href="https://search-box.herokuapp.com">search-box.herokuapp.com</a>/)</p>
 
-<p>Things you may want to cover:</p>
+<h4 id="label-Requirements">Requirements<span><a href="#label-Requirements">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p>Ruby version</p>
+<p>Ruby 2.3.0</p>
 </li><li>
-<p>System dependencies</p>
+<p>Rails 4.2.6</p>
 </li><li>
-<p>Configuration</p>
-</li><li>
-<p>Database creation</p>
-</li><li>
-<p>Database initialization</p>
-</li><li>
-<p>How to run the test suite</p>
-</li><li>
-<p>Services (job queues, cache servers, search engines, etc.)</p>
-</li><li>
-<p>Deployment instructions</p>
-</li><li>
-<p>…</p>
+<p>postgres 9.4+</p>
 </li></ul>
 
-<p>Please feel free to use a different markup language if you do not plan to
-run <code>rake doc:app</code>.</p>
+<h4 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">git</span><span class="ruby-ivar">@github</span>.<span class="ruby-identifier">com</span>:<span class="ruby-identifier">marcoT89</span><span class="ruby-operator">/</span><span class="ruby-identifier">search</span><span class="ruby-operator">-</span><span class="ruby-identifier">box</span>.<span class="ruby-identifier">git</span>
+<span class="ruby-identifier">cd</span> <span class="ruby-identifier">search</span><span class="ruby-operator">-</span><span class="ruby-identifier">box</span>
+<span class="ruby-identifier">bundle</span> <span class="ruby-identifier">install</span>
+</pre>
+
+<p>Configure the database connections in `config/database.yml`. Than setup the
+database with:</p>
+
+<pre class="ruby"><span class="ruby-identifier">rake</span> <span class="ruby-identifier">db</span>:<span class="ruby-identifier">setup</span>
+</pre>
+
+<p>Than starts the rails server:</p>
+
+<pre class="ruby"><span class="ruby-identifier">rails</span> <span class="ruby-identifier">s</span>
+</pre>
+
+<p>See `localhost:3000` to see the app running.</p>
+
+<h4 id="label-Documentation">Documentation<span><a href="#label-Documentation">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>See [Docs](doc/app/index.html) for more details on classes of the project.</p>
+
+<h4 id="label-MIT+License">MIT License<span><a href="#label-MIT+License">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The MIT License</p>
+
+<p>Copyright © 2010-2016 Google, Inc. <a
+href="http://angularjs.org">angularjs.org</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the “Software”),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.</p>
 </main>
 
 

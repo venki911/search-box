@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     post 'query' => 'query#search'
     get 'query' => 'query#all_searches'
     delete 'query' => 'query#reset_queries'
+    delete 'query/all' => 'query#destroy_queries'
   end
 end

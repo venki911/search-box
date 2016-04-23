@@ -4,7 +4,7 @@ class QueryController < ApplicationController
 
   # Returns a list of suggestions based on most frequent queries in real time
   def suggestions
-    render json: Query.suggest_most_frequent(params[:query]).limit(5)
+    render json: Query.suggest_most_frequent(params[:query].downcase).limit(5)
   end
 
   # Save a search query incrementing the counter if exists
@@ -26,6 +26,13 @@ class QueryController < ApplicationController
     if Query.update_all(count: 0)
       broadcast_queries
     end
+    render json: :ok
+  end
+
+  # Destroys all queries
+  def destroy_queries
+    Query.destroy_all
+    broadcast_queries
     render json: :ok
   end
 

@@ -16,6 +16,7 @@
     var vm = this;
     vm.searches     = [];
     vm.reset        = SearchService.reset;
+    vm.destroyAll   = SearchService.destroyAll;
     vm.running      = false;
 
     activate();
