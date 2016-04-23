@@ -16,31 +16,48 @@
     var vm = this;
     vm.searches     = [];
     vm.reset        = SearchService.reset;
-    vm.startWatcher = startWatcher;
-    vm.stopWatcher  = stopWatcher;
     vm.running      = false;
 
-    var watcher,
-      interval = 1000;
-
-    startWatcher();
+    activate();
 
     ////////////////
+
+    /**
+     * Establish websocket connection and bind events to vm.queries
+     *
+     * @return {void}
+     * @author Marco Tulio de Avila Santos <marco.santos@aker.com.br>
+     */
+    function startWebsocket() {
+      var socket = new WebSocketRails(window.location.host + "/websocket");
+
+      socket.on_open = function(data) {
+        console.log('Connection established', data);
+      }
+      socket.bind('connection_closed', function(data) {
+        console.log('Connection closed', data);
+      });
+      socket.bind('connection_error', function(data) {
+        console.log('Connection error', data);
+      });
+
+      var channel = socket.subscribe('query');
+
+      channel.bind('all_searches', function(data) {
+        vm.searches = data;
+      });
+    }
 
     /**
      * Initialize the queries watcher
      * @return {void}
      * @author Marco Ávila <marcotulio.avila@gmail.com>
      */
-    function startWatcher() {
-      if (angular.isUndefined(watcher)) {
-        watcher = $interval(function() {
-          SearchService.getQueries().then(function(response) {
-            vm.searches = response.data;
-          });
-        }, interval);
-        vm.running = true;
-      }
+    function activate() {
+      startWebsocket();
+      SearchService.getQueries().then(function(response) {
+        vm.searches = response.data;
+      });
     }
 
     /**

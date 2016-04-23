@@ -5,21 +5,20 @@
     .module('search-box')
     .controller('SearchBoxController', SearchBoxController);
 
-  SearchBoxController.$inject = ['SearchService', '$scope'];
+  SearchBoxController.$inject = ['SearchService'];
 
   /**
    * Controller for search-box directive
    * @param {Object} SearchService Service
    * @author Marco Ávila <marcotulio.avila@gmail.com>
    */
-  function SearchBoxController(SearchService, $scope) {
+  function SearchBoxController(SearchService) {
     var vm = this;
     vm.query             = '';
     vm.queries           = [];
     vm.updateSuggestions = updateSuggestions;
     vm.search            = search;
     vm.selectQuery       = selectQuery;
-    vm.hideSuggestions   = true;
 
     //////////////////
 
@@ -52,10 +51,7 @@
      */
     function selectQuery(query) {
       vm.query = query.text;
-      vm.queries = [];
       vm.search(vm.query);
-      $scope.$digest();
-      vm.hideSuggestions;
     }
   }
 })();
