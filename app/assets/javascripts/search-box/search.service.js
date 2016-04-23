@@ -16,6 +16,7 @@
     self.search         = search;
     self.getSuggestions = getSuggestions;
     self.reset          = reset;
+    self.destroyAll     = destroyAll;
     self.getQueries     = getQueries;
     self.queries        = [];
 
@@ -60,6 +61,15 @@
     function reset() {
       console.log('reseting counter of all searches');
       return $http.delete('/api/query');
+    }
+
+    /**
+     * Destroys all queries from database
+     * @return {Object} Promise
+     */
+    function destroyAll() {
+      console.log('Destroing all queries');
+      return $http.delete('/api/query/all');
     }
   }
 })();

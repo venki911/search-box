@@ -29,6 +29,13 @@ class QueryController < ApplicationController
     render json: :ok
   end
 
+  # Destroys all queries
+  def destroy_queries
+    Query.destroy_all
+    broadcast_queries
+    render json: :ok
+  end
+
   # Broadcasts most frequent queries through websocket
   def broadcast_queries
     WebsocketRails[:query].trigger 'all_searches', Query.all.most_frequent

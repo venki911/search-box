@@ -13,7 +13,12 @@
       <span class="pull-right">
         <button type="button"
           class="btn btn-sm btn-danger"
-          ng-click="vm.reset()"><span><i class="fa fa-trash"></i> Clear stats</span></button>
+          ng-click="vm.destroyAll()"><span><i class="fa fa-trash"></i> Destroy Queries</span>
+        </button>
+        <button type="button"
+          class="btn btn-sm btn-danger"
+          ng-click="vm.reset()"><span><i class="fa fa-refresh"></i> Clear stats</span>
+        </button>
       </span>
     </h3>
     <p>These are all searched queries:</p>
