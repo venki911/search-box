@@ -10,6 +10,7 @@ end
 gem 'angular-rails-templates'
 gem "font-awesome-rails"
 gem 'websocket-rails'
+gem 'faye-websocket', '0.10.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
