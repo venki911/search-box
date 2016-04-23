@@ -1,6 +1,6 @@
 == Search Box
 
-This project is part of a test for helpjuice. This project can be found in a heroku app called [Search Box](https://search-box.herokuapp.com/)
+This project is part of a test for helpjuice. This project can be found in a heroku app https://search-box.herokuapp.com
 
 ==== Requirements
 * Ruby 2.3.0
