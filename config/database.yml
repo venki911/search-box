@@ -1,11 +1,11 @@
 default: &default
   adapter: postgresql
-  username: root
-  password: 123456
   pool: 5
 
 development:
   <<: *default
+  username: root
+  password: 123456
   database: helpjuice_dev
 
 # Warning: The database defined as "test" will be erased and
@@ -13,8 +13,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  username: root
+  password: 123456
   database: helpjuice_test
 
 production:
   <<: *default
-  database: helpjuice
+  url:  <%= ENV["DATABASE_URL"] %>
