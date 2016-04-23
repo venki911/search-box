@@ -11,6 +11,7 @@ class QueryController < ApplicationController
   def search
     query = Query.where(text: params[:query].downcase).first_or_initialize
     if query.save
+      broadcast_queries
       return render json: query
     end
   end
@@ -22,6 +23,14 @@ class QueryController < ApplicationController
 
   # Resets the count attribute of all queries
   def reset_queries
-    render json: Query.update_all(count: 0)
+    if Query.update_all(count: 0)
+      broadcast_queries
+    end
+    render json: :ok
+  end
+
+  # Broadcasts most frequent queries through websocket
+  def broadcast_queries
+    WebsocketRails[:query].trigger 'all_searches', Query.all.most_frequent
   end
 end

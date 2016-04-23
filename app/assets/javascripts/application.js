@@ -16,6 +16,7 @@
 //= require angular-bootstrap
 //= require angular-animate
 //= require angular-rails-templates
+//= require websocket_rails/main
 //
 // Angular Project
 //
