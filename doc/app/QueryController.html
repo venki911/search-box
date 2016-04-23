@@ -72,6 +72,10 @@
     
     <li ><a href="#method-i-all_searches">#all_searches</a>
     
+    <li ><a href="#method-i-broadcast_queries">#broadcast_queries</a>
+    
+    <li ><a href="#method-i-destroy_queries">#destroy_queries</a>
+    
     <li ><a href="#method-i-reset_queries">#reset_queries</a>
     
     <li ><a href="#method-i-search">#search</a>
@@ -133,9 +137,77 @@
 
           
           <div class="method-source-code" id="all_searches-source">
-            <pre><span class="ruby-comment"># File app/controllers/query_controller.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/controllers/query_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_searches</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Query</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">most_frequent</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-broadcast_queries" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">broadcast_queries</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Broadcasts most frequent queries through websocket</p>
+          
+          
+
+          
+          <div class="method-source-code" id="broadcast_queries-source">
+            <pre><span class="ruby-comment"># File app/controllers/query_controller.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">broadcast_queries</span>
+  <span class="ruby-constant">WebsocketRails</span>[<span class="ruby-value">:query</span>].<span class="ruby-identifier">trigger</span> <span class="ruby-string">&#39;all_searches&#39;</span>, <span class="ruby-constant">Query</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">most_frequent</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-destroy_queries" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy_queries</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Destroys all queries</p>
+          
+          
+
+          
+          <div class="method-source-code" id="destroy_queries-source">
+            <pre><span class="ruby-comment"># File app/controllers/query_controller.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_queries</span>
+  <span class="ruby-constant">Query</span>.<span class="ruby-identifier">destroy_all</span>
+  <span class="ruby-identifier">broadcast_queries</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -166,9 +238,12 @@
 
           
           <div class="method-source-code" id="reset_queries-source">
-            <pre><span class="ruby-comment"># File app/controllers/query_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/query_controller.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reset_queries</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Query</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">count</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Query</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">count</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
+    <span class="ruby-identifier">broadcast_queries</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -203,6 +278,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>
   <span class="ruby-identifier">query</span> = <span class="ruby-constant">Query</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">text</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:query</span>].<span class="ruby-identifier">downcase</span>).<span class="ruby-identifier">first_or_initialize</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">broadcast_queries</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">query</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -237,7 +313,7 @@
           <div class="method-source-code" id="suggestions-source">
             <pre><span class="ruby-comment"># File app/controllers/query_controller.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">suggestions</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Query</span>.<span class="ruby-identifier">suggest_most_frequent</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:query</span>]).<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Query</span>.<span class="ruby-identifier">suggest_most_frequent</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:query</span>].<span class="ruby-identifier">downcase</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
